@@ -46,14 +46,21 @@ Plan.create!([{
 
 Exercise.create!([{
   name: "Run/Walk: 2 mi",
-  description: "Run for 1 minute, walk for 1 minute. Repeat until you reach 2 miles. Sholud take around 20 minutes."
+  description: "Run for 1 minute, walk for 1 minute. Repeat until you reach 2 miles. Sholud take around 20 minutes.",
+  miles: 2
   },{
   name: "Run/Walk: 3 mi",
-  description: "Run for 2 minutes, walk for 4 minutes. Repeat until you reach 3 miles. Sholud take around 30 minutes"},{
+  description: "Run for 2 minutes, walk for 4 minutes. Repeat until you reach 3 miles. Sholud take around 30 minutes",
+  miles: 3
+  },{
   name: "Run/Walk: 3",
-  description: "Run for 3 minutes, walk for 3 minutes. Repeat until you reach 3 miles. Sholud take around 25 minutes"},{
+  description: "Run for 3 minutes, walk for 3 minutes. Repeat until you reach 3 miles. Sholud take around 25 minutes",
+  miles: 3
+  },{
   name: "Run/Walk: 3",
-  description: "Run for 5 minutes, walk for 3 minutes. Repeat until you reach 3 miles. Sholud take around 25 minutes"}])
+  description: "Run for 5 minutes, walk for 3 minutes. Repeat until you reach 3 miles. Sholud take around 25 minutes",
+  miles: 3
+  }])
 
 Day.create!([
   { position: 1, week: 1, plan_id: 1 },
