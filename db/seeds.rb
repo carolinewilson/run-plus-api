@@ -45,9 +45,6 @@ Plan.create!([{
   }])
 
 Exercise.create!([{
-  name: "Rest",
-  description: "Rest days are needed."
-  },{
   name: "Run/Walk: 2 mi",
   description: "Run for 1 minute, walk for 1 minute. Repeat until you reach 2 miles. Sholud take around 20 minutes."
   },{
@@ -59,18 +56,18 @@ Exercise.create!([{
   description: "Run for 5 minutes, walk for 3 minutes. Repeat until you reach 3 miles. Sholud take around 25 minutes"}])
 
 Day.create!([
-  { position: 1, week: 1, exercise_id: 1, plan_id: 1 },
-  { position: 2, week: 1, exercise_id: 2, plan_id: 1 },
-  { position: 3, week: 1, exercise_id: 1, plan_id: 1 },
-  { position: 4, week: 1, exercise_id: 3, plan_id: 1 },
-  { position: 5, week: 1, exercise_id: 1, plan_id: 1 },
-  { position: 6, week: 1, exercise_id: 1, plan_id: 1 },
-  { position: 7, week: 1, exercise_id: 3, plan_id: 1 },
-  { position: 8, week: 2, exercise_id: 1, plan_id: 1 },
-  { position: 9, week: 2, exercise_id: 4, plan_id: 1 },
-  { position: 10, week: 2, exercise_id: 1, plan_id: 1 },
-  { position: 11, week: 2, exercise_id: 4, plan_id: 1 },
-  { position: 12, week: 2, exercise_id: 1, plan_id: 1 },
-  { position: 13, week: 2, exercise_id: 1, plan_id: 1 },
-  { position: 14, week: 2, exercise_id: 5, plan_id: 1 },
+  { position: 1, week: 1, plan_id: 1 },
+  { position: 2, week: 1, exercise_id: 1, plan_id: 1 },
+  { position: 3, week: 1, plan_id: 1 },
+  { position: 4, week: 1, exercise_id: 2, plan_id: 1 },
+  { position: 5, week: 1, plan_id: 1 },
+  { position: 6, week: 1, plan_id: 1 },
+  { position: 7, week: 1, exercise_id: 2, plan_id: 1 },
+  { position: 8, week: 2, plan_id: 1 },
+  { position: 9, week: 2, exercise_id: 3, plan_id: 1 },
+  { position: 10, week: 2, plan_id: 1 },
+  { position: 11, week: 2, exercise_id: 3, plan_id: 1 },
+  { position: 12, week: 2, plan_id: 1 },
+  { position: 13, week: 2, plan_id: 1 },
+  { position: 14, week: 2, exercise_id: 4, plan_id: 1 },
   ])

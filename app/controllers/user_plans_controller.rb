@@ -16,9 +16,26 @@ class UserPlansController < ApplicationController
 
   # POST /user_plans
   def create
-    @user_plan = UserPlan.new(user_plan_params)
 
+    # Work out which plan to create
+    length = params[:length]
+    level = params[:level]
+
+    #Create a new user plan
+    @user_plan = UserPlan.new({
+      user_id: current_user.id,
+      name: "#{length} #{level}",
+      end_date: params[:end_date]
+    })
+
+    my_plan = Plan.where(level: level, length: length).first
+    puts "---> Plan: #{my_plan}"
     if @user_plan.save
+      # Upon successful saving of the plan, grab the corresponding plan and make a copy
+      # Find plan
+      plan = Plan.where(level: level, length: length)
+      # Duplicate days
+
       render json: @user_plan, status: :created, location: @user_plan
     else
       render json: @user_plan.errors, status: :unprocessable_entity
@@ -47,6 +64,6 @@ class UserPlansController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_plan_params
-      params.require(:user_plan).permit(:end_date, :name, :user_id)
+      params.require(:user_plan).permit(:end_date, :name, :user_id, :length, :level)
     end
 end

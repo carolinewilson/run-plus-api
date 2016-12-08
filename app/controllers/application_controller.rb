@@ -6,11 +6,11 @@ class ApplicationController < ActionController::API
   end
 
   def user_signed_in?
-    !!currrent_user
+    !!current_user
   end
 
-  def currrent_user
-    @currrent_user ||= User.find(decoded_token[:id]) if id_found?
+  def current_user
+    @current_user ||= User.find(decoded_token[:id]) if id_found?
   rescue
     nil
   end
