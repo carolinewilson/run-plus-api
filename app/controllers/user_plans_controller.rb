@@ -1,4 +1,5 @@
 class UserPlansController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :set_user_plan, only: [:show, :update, :destroy]
 
   # GET /user_plans
@@ -46,6 +47,6 @@ class UserPlansController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_plan_params
-      params.require(:user_plan).permit(:end_date, :name)
+      params.require(:user_plan).permit(:end_date, :name, :user_id)
     end
 end

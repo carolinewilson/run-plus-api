@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :user_days
-  resources :user_plans
   scope :api do
     resources :users, except: [:create]
+    resources :user_days
+    resources :user_plans
     resources :days
     resources :exercises
     resources :plans
