@@ -11,13 +11,12 @@ class UserPlansController < ApplicationController
 
   # GET /user_plans/1
   def show
-    render json: @user_plan
+    render json: @user_plan, include: ['user_days', 'user_days.exercise']
   end
 
   # POST /user_plans
   def create
-
-    # Work out which plan to create
+    # Work out which plan to create (?? Why does 'user_plan_params[:length]' not work ??)
     length = params[:length]
     level = params[:level]
 
@@ -28,13 +27,14 @@ class UserPlansController < ApplicationController
       end_date: params[:end_date]
     })
 
-    my_plan = Plan.where(level: level, length: length).first
-    puts "---> Plan: #{my_plan}"
     if @user_plan.save
-      # Upon successful saving of the plan, grab the corresponding plan and make a copy
+      # Upon successful saving of the plan, grab the corresponding plan and duplicate days
       # Find plan
-      plan = Plan.where(level: level, length: length)
+      plan = Plan.where(level: level, length: length).first
       # Duplicate days
+      plan.days.each do |day|
+        UserDay.create!({ user_plan_id: @user_plan.id, exercise_id: day.exercise_id, position: day.position, week: day.week })
+      end
 
       render json: @user_plan, status: :created, location: @user_plan
     else
@@ -64,6 +64,6 @@ class UserPlansController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_plan_params
-      params.require(:user_plan).permit(:end_date, :name, :user_id, :length, :level)
+      params.permit(:end_date, :length, :level)
     end
 end
