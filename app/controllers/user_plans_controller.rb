@@ -17,22 +17,29 @@ class UserPlansController < ApplicationController
   # POST /user_plans
   def create
     # Work out which plan to create (?? Why does 'user_plan_params[:length]' not work ??)
-    length = params[:length]
-    level = params[:level]
+    length = user_plan_params[:length]
+    level = user_plan_params[:level]
 
+    puts "---> level: #{level}"
+    puts "---> length: #{length}"
+    puts "---> end date: #{user_plan_params[:end_date]}"
+    puts "---> user_id: #{current_user.id}"
     #Create a new user plan
     @user_plan = UserPlan.new({
       user_id: current_user.id,
       name: "#{length} #{level}",
-      end_date: params[:end_date]
+      end_date: user_plan_params[:end_date]
     })
 
     if @user_plan.save
-      # Upon successful saving of the plan, grab the corresponding plan and duplicate days
+      # On successful saving of the plan, grab the corresponding plan and duplicate days
       # Find plan
       plan = Plan.where(level: level, length: length).first
+      # puts "---> #{plan.days.first}"
+
       # Duplicate days
       plan.days.each do |day|
+        # puts "--> Day: #{day.exercise_id}"
         UserDay.create!({ user_plan_id: @user_plan.id, exercise_id: day.exercise_id, position: day.position, week: day.week })
       end
 
@@ -44,6 +51,17 @@ class UserPlansController < ApplicationController
 
   # PATCH/PUT /user_plans/1
   def update
+
+    if params[:user_days]
+
+      params[:user_days].each do |user_day|
+        @user_plan.user_days.find(user_day[:id]).set_list_position(user_day[:position])
+      end
+
+      params.delete(:user_days)
+    end
+
+
     if @user_plan.update(user_plan_params)
       render json: @user_plan
     else
