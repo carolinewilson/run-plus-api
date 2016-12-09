@@ -1,5 +1,4 @@
 class ExercisesController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :set_exercise, only: [:show, :update, :destroy]
 
   # GET /exercises

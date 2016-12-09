@@ -1,5 +1,4 @@
 class UserPlan < ApplicationRecord
   belongs_to :user
-  has_many :user_days, -> { order(position: :asc) }
-  # has_many :user_days, -> { order(position: :asc) }, dependent: :destroy #(??)
+  has_many :user_days, -> { order(position: :asc) }, dependent: :destroy
 end

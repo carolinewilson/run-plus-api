@@ -1,5 +1,4 @@
 class UserPlansController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :set_user_plan, only: [:show, :update, :destroy]
 
   # GET /user_plans
@@ -16,14 +15,10 @@ class UserPlansController < ApplicationController
 
   # POST /user_plans
   def create
-    # Work out which plan to create (?? Why does 'user_plan_params[:length]' not work ??)
+    # Work out which plan to create
     length = user_plan_params[:length]
     level = user_plan_params[:level]
 
-    puts "---> level: #{level}"
-    puts "---> length: #{length}"
-    puts "---> end date: #{user_plan_params[:end_date]}"
-    puts "---> user_id: #{current_user.id}"
     #Create a new user plan
     @user_plan = UserPlan.new({
       user_id: current_user.id,
@@ -35,11 +30,9 @@ class UserPlansController < ApplicationController
       # On successful saving of the plan, grab the corresponding plan and duplicate days
       # Find plan
       plan = Plan.where(level: level, length: length).first
-      # puts "---> #{plan.days.first}"
 
       # Duplicate days
       plan.days.each do |day|
-        # puts "--> Day: #{day.exercise_id}"
         UserDay.create!({ user_plan_id: @user_plan.id, exercise_id: day.exercise_id, position: day.position, week: day.week })
       end
 

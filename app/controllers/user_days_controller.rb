@@ -1,5 +1,4 @@
 class UserDaysController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :set_user_day, only: [:show, :update, :destroy]
 
   # GET /user_days
