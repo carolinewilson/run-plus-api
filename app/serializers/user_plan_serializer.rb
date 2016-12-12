@@ -1,20 +1,9 @@
 class UserPlanSerializer < ActiveModel::Serializer
-  attributes :id, :end_date, :name, :active
-  # attributes :id, :end_date, :name, :active, :status
+  attributes :id, :end_date, :name, :active, :start_date
   has_many :user_days
 
-
-  # def status
-  #   p object.active
-  #   if !object.active
-  #     if object.end_date < Time.new && (object.end_date - object.user_days.length).to_time < Time.new
-  #     status = 'past'
-  #     else
-  #       status = 'future'
-  #     end
-  #   end
-  #
-  #   status
-  # end
+  def start_date
+    (object.end_date - object.user_days.length).to_time
+  end
 
 end
