@@ -26,7 +26,8 @@ class UserPlansController < ApplicationController
     @user_plan = UserPlan.new({
       user_id: current_user.id,
       name: "#{length} #{level}",
-      end_date: user_plan_params[:end_date]
+      end_date: user_plan_params[:end_date],
+      active: true
     })
 
     if @user_plan.save
@@ -78,6 +79,6 @@ class UserPlansController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_plan_params
-      params.permit(:end_date, :length, :level)
+      params.permit(:end_date, :length, :level, :active)
     end
 end
