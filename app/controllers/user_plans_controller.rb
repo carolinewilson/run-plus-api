@@ -10,6 +10,9 @@ class UserPlansController < ApplicationController
 
   # GET /user_plans/1
   def show
+    if params[:week]
+      @user_plan = UserPlan.includes(:user_days).where('user_days.week' => params[:week]).find(params[:id])
+    end
     render json: @user_plan, include: ['user_days', 'user_days.exercise']
   end
 
