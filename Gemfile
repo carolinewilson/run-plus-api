@@ -17,6 +17,7 @@ gem 'active_model_serializers'
 gem 'jwt'
 gem 'acts_as_list'
 gem 'httparty'
+gem 'google_maps_service'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

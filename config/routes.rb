@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     post 'oauth/strava', to: 'oauth#strava'
     get 'strava', to: 'strava#index'
+    get 'strava/activity', to: 'strava#show'
   end
 
 
