@@ -1,5 +1,5 @@
 class UserDaySerializer < ActiveModel::Serializer
-  attributes :id, :position, :week, :completed, :date
+  attributes :id, :position, :week, :completed, :date, :strava_id
 
   has_one :exercise #(??)
 

@@ -46,6 +46,6 @@ class UserDaysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_day_params
-      params.require(:user_day).permit(:position, :week, :completed, :user_plan_id, :exercise_id)
+      params.require(:user_day).permit(:position, :week, :completed, :user_plan_id, :exercise_id, :strava_id)
     end
 end
