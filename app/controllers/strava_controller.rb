@@ -1,3 +1,5 @@
+require 'google_maps_service'
+
 class StravaController < ApplicationController
   skip_before_action :authenticate_user!
 
@@ -9,6 +11,16 @@ class StravaController < ApplicationController
         "Authorization" => access_token
       }
     })
+
+    # Decode polyline
+    request.parsed_response.each do |activity|
+
+      encoded_path = activity["map"]["summary_polyline"]
+
+      unless encoded_path == nil
+        activity["map"]["summary_polyline"] = GoogleMapsService::Polyline.decode(encoded_path)
+      end
+    end
 
     render json: request.parsed_response, status: request.code
   end
@@ -22,16 +34,12 @@ class StravaController < ApplicationController
       }
     })
 
-    encodedPolyline = request.parsed_response["map"]["polyline"]
-
-    require 'google_maps_service'
+    encoded_path = request.parsed_response["map"]["polyline"]
 
     # Decode polyline
-    encoded_path = encodedPolyline
+    # encoded_path = encodedPolyline
 
     request.parsed_response["map"]["polyline"] = GoogleMapsService::Polyline.decode(encoded_path)
-
-    p request.parsed_response
 
     render json: request.parsed_response, status: request.code
   end

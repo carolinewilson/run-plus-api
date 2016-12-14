@@ -3,7 +3,7 @@ class UserPlansController < ApplicationController
 
   # GET /user_plans
   def index
-    @user_plans = UserPlan.all
+    @user_plans = UserPlan.where(user_plan_params)
 
     render json: @user_plans
   end
@@ -79,6 +79,6 @@ class UserPlansController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_plan_params
-      params.permit(:end_date, :length, :level, :active)
+      params.permit(:end_date, :length, :level, :active, :user_id)
     end
 end
