@@ -1,28 +1,12 @@
-<<<<<<< HEAD
-# README
+# Run + API
+A web application for runners looking to train for their next big running event.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Use the app [here](https://run-plus.herokuapp.com).
 
-Things you may want to cover:
+![](https://run-plus.herokuapp.com/images/run-plus.png)
 
-* Ruby version
+This repo contains the backend API built using Ruby on Rails with a PostgreSQL database and hosted on Heroku.
 
-* System dependencies
+Please see [here](https://github.com/carolinewilson/run-plus-frontend) for the front-end repo and full readme.
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
-# wdi-project-4
->>>>>>> 0a354277429a3adb5411d51a0bdbeeefe94959c3
